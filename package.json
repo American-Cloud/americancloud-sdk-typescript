@@ -1,0 +1,63 @@
+{
+  "name": "@americancloud/sdk",
+  "version": "1.2.2-rc.2",
+  "description": "Official TypeScript & JavaScript SDK for the American Cloud Platform API.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "CHANGELOG.md",
+    "VERSIONING.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.17",
+    "tsup": "8.5.1",
+    "typescript": "5.9.3"
+  },
+  "keywords": [
+    "americancloud",
+    "american-cloud",
+    "sdk",
+    "api",
+    "cloud",
+    "client"
+  ],
+  "homepage": "https://americancloud.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/American-Cloud/americancloud-sdk-typescript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/American-Cloud/americancloud-sdk-typescript/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

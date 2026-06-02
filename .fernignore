@@ -1,0 +1,17 @@
+# Files in this list are preserved between Fern generations.
+# Add any hand-written files (docs, CI, license, etc.) here.
+
+.git
+.gitignore
+.github/
+LICENSE
+NOTICE
+README.md
+CHANGELOG.md
+VERSIONING.md
+package.json
+package-lock.json
+tsconfig.json
+tsup.config.ts
+dist/
+node_modules/

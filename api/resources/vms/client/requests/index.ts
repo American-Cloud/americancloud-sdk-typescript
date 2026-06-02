@@ -1,0 +1,11 @@
+export type { CreateConsoleVmsRequest } from "./CreateConsoleVmsRequest.js";
+export type { DeleteVmsRequest } from "./DeleteVmsRequest.js";
+export type { GetMetricsVmsRequest } from "./GetMetricsVmsRequest.js";
+export type { GetVmsRequest } from "./GetVmsRequest.js";
+export type { ListVmsRequest } from "./ListVmsRequest.js";
+export type { PowerVmsRequest } from "./PowerVmsRequest.js";
+export type { ReinstallVmsRequest } from "./ReinstallVmsRequest.js";
+export type { ResetPasswordDto } from "./ResetPasswordDto.js";
+export type { ResizeVmDiskDto } from "./ResizeVmDiskDto.js";
+export type { ScaleVmsRequest } from "./ScaleVmsRequest.js";
+export type { UpdateHostnameVmsRequest } from "./UpdateHostnameVmsRequest.js";
