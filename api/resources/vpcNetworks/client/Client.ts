@@ -737,6 +737,427 @@ export class VpcNetworksClient {
     }
 
     /**
+     * Returns a single network tier of a VPC.
+     *
+     * @param {AmericancloudApi.GetTierVpcNetworksRequest} request
+     * @param {VpcNetworksClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link AmericancloudApi.BadRequestError}
+     * @throws {@link AmericancloudApi.UnauthorizedError}
+     * @throws {@link AmericancloudApi.ForbiddenError}
+     * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.InternalServerError}
+     *
+     * @example
+     *     await client.vpcNetworks.getTierVpcNetworks({
+     *         id: "123e4567-e89b-12d3-a456-426614174000",
+     *         tierId: "123e4567-e89b-12d3-a456-426614174000"
+     *     })
+     */
+    public getTierVpcNetworks(
+        request: AmericancloudApi.GetTierVpcNetworksRequest,
+        requestOptions?: VpcNetworksClient.RequestOptions,
+    ): core.HttpResponsePromise<AmericancloudApi.VpcTierDetailResponseDto> {
+        return core.HttpResponsePromise.fromPromise(this.__getTierVpcNetworks(request, requestOptions));
+    }
+
+    private async __getTierVpcNetworks(
+        request: AmericancloudApi.GetTierVpcNetworksRequest,
+        requestOptions?: VpcNetworksClient.RequestOptions,
+    ): Promise<core.WithRawResponse<AmericancloudApi.VpcTierDetailResponseDto>> {
+        const { id, tierId } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.AmericancloudApiEnvironment.Production,
+                `api/v1/networks/vpc/${core.url.encodePathParam(id)}/tiers/${core.url.encodePathParam(tierId)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as AmericancloudApi.VpcTierDetailResponseDto,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new AmericancloudApi.BadRequestError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new AmericancloudApi.UnauthorizedError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new AmericancloudApi.ForbiddenError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new AmericancloudApi.InternalServerError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.AmericancloudApiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/api/v1/networks/vpc/{id}/tiers/{tierId}",
+        );
+    }
+
+    /**
+     * Updates the name and/or description of a network tier.
+     *
+     * @param {AmericancloudApi.UpdateVpcTierDto} request
+     * @param {VpcNetworksClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link AmericancloudApi.BadRequestError}
+     * @throws {@link AmericancloudApi.UnauthorizedError}
+     * @throws {@link AmericancloudApi.ForbiddenError}
+     * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.InternalServerError}
+     *
+     * @example
+     *     await client.vpcNetworks.updateTierVpcNetworks({
+     *         id: "123e4567-e89b-12d3-a456-426614174000",
+     *         tierId: "123e4567-e89b-12d3-a456-426614174000"
+     *     })
+     */
+    public updateTierVpcNetworks(
+        request: AmericancloudApi.UpdateVpcTierDto,
+        requestOptions?: VpcNetworksClient.RequestOptions,
+    ): core.HttpResponsePromise<AmericancloudApi.VpcTierDetailResponseDto> {
+        return core.HttpResponsePromise.fromPromise(this.__updateTierVpcNetworks(request, requestOptions));
+    }
+
+    private async __updateTierVpcNetworks(
+        request: AmericancloudApi.UpdateVpcTierDto,
+        requestOptions?: VpcNetworksClient.RequestOptions,
+    ): Promise<core.WithRawResponse<AmericancloudApi.VpcTierDetailResponseDto>> {
+        const { id, tierId, ..._body } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.AmericancloudApiEnvironment.Production,
+                `api/v1/networks/vpc/${core.url.encodePathParam(id)}/tiers/${core.url.encodePathParam(tierId)}`,
+            ),
+            method: "PUT",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as AmericancloudApi.VpcTierDetailResponseDto,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new AmericancloudApi.BadRequestError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new AmericancloudApi.UnauthorizedError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new AmericancloudApi.ForbiddenError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new AmericancloudApi.InternalServerError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.AmericancloudApiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PUT",
+            "/api/v1/networks/vpc/{id}/tiers/{tierId}",
+        );
+    }
+
+    /**
+     * Deletes a single network tier from a VPC, leaving the rest of the VPC intact.
+     *
+     * @param {AmericancloudApi.DeleteTierVpcNetworksRequest} request
+     * @param {VpcNetworksClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link AmericancloudApi.BadRequestError}
+     * @throws {@link AmericancloudApi.UnauthorizedError}
+     * @throws {@link AmericancloudApi.ForbiddenError}
+     * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.InternalServerError}
+     *
+     * @example
+     *     await client.vpcNetworks.deleteTierVpcNetworks({
+     *         id: "123e4567-e89b-12d3-a456-426614174000",
+     *         tierId: "123e4567-e89b-12d3-a456-426614174000"
+     *     })
+     */
+    public deleteTierVpcNetworks(
+        request: AmericancloudApi.DeleteTierVpcNetworksRequest,
+        requestOptions?: VpcNetworksClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteTierVpcNetworks(request, requestOptions));
+    }
+
+    private async __deleteTierVpcNetworks(
+        request: AmericancloudApi.DeleteTierVpcNetworksRequest,
+        requestOptions?: VpcNetworksClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { id, tierId } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.AmericancloudApiEnvironment.Production,
+                `api/v1/networks/vpc/${core.url.encodePathParam(id)}/tiers/${core.url.encodePathParam(tierId)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new AmericancloudApi.BadRequestError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new AmericancloudApi.UnauthorizedError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new AmericancloudApi.ForbiddenError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new AmericancloudApi.InternalServerError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.AmericancloudApiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/api/v1/networks/vpc/{id}/tiers/{tierId}",
+        );
+    }
+
+    /**
+     * Restarts a single network tier of a VPC.
+     *
+     * @param {AmericancloudApi.RestartTierVpcNetworksRequest} request
+     * @param {VpcNetworksClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link AmericancloudApi.BadRequestError}
+     * @throws {@link AmericancloudApi.UnauthorizedError}
+     * @throws {@link AmericancloudApi.ForbiddenError}
+     * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.InternalServerError}
+     *
+     * @example
+     *     await client.vpcNetworks.restartTierVpcNetworks({
+     *         id: "123e4567-e89b-12d3-a456-426614174000",
+     *         tierId: "123e4567-e89b-12d3-a456-426614174000"
+     *     })
+     */
+    public restartTierVpcNetworks(
+        request: AmericancloudApi.RestartTierVpcNetworksRequest,
+        requestOptions?: VpcNetworksClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__restartTierVpcNetworks(request, requestOptions));
+    }
+
+    private async __restartTierVpcNetworks(
+        request: AmericancloudApi.RestartTierVpcNetworksRequest,
+        requestOptions?: VpcNetworksClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { id, tierId } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.AmericancloudApiEnvironment.Production,
+                `api/v1/networks/vpc/${core.url.encodePathParam(id)}/tiers/${core.url.encodePathParam(tierId)}/restart`,
+            ),
+            method: "POST",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new AmericancloudApi.BadRequestError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new AmericancloudApi.UnauthorizedError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new AmericancloudApi.ForbiddenError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new AmericancloudApi.InternalServerError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.AmericancloudApiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/api/v1/networks/vpc/{id}/tiers/{tierId}/restart",
+        );
+    }
+
+    /**
      * @param {AmericancloudApi.RestartVpcNetworksRequest} request
      * @param {VpcNetworksClient.RequestOptions} requestOptions - Request-specific configuration.
      *

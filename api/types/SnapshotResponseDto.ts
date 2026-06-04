@@ -9,8 +9,8 @@ export interface SnapshotResponseDto {
     sizeGb: number;
     /** Current status of the snapshot */
     status: string;
-    /** Type of the snapshot. Null when the source volume has no recorded type (rare; typically legacy snapshots). */
-    type: SnapshotResponseDto.Type | null;
+    /** Type of the snapshot, indicating whether it was taken of a root or data disk. */
+    type: SnapshotResponseDto.Type;
     /** ID of the volume the snapshot was created from, if any */
     volumeId: string;
     /** Label of the region where the snapshot is located */
@@ -22,7 +22,7 @@ export interface SnapshotResponseDto {
 }
 
 export namespace SnapshotResponseDto {
-    /** Type of the snapshot. Null when the source volume has no recorded type (rare; typically legacy snapshots). */
+    /** Type of the snapshot, indicating whether it was taken of a root or data disk. */
     export const Type = {
         DataDisk: "DataDisk",
         RootDisk: "RootDisk",

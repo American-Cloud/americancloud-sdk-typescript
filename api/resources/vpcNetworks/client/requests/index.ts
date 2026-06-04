@@ -1,6 +1,10 @@
 export type { CreateVpcTierDto } from "./CreateVpcTierDto.js";
+export type { DeleteTierVpcNetworksRequest } from "./DeleteTierVpcNetworksRequest.js";
 export type { DeleteVpcNetworksRequest } from "./DeleteVpcNetworksRequest.js";
+export type { GetTierVpcNetworksRequest } from "./GetTierVpcNetworksRequest.js";
 export type { GetVpcNetworksRequest } from "./GetVpcNetworksRequest.js";
 export type { ListVpcNetworksRequest } from "./ListVpcNetworksRequest.js";
+export type { RestartTierVpcNetworksRequest } from "./RestartTierVpcNetworksRequest.js";
 export type { RestartVpcNetworksRequest } from "./RestartVpcNetworksRequest.js";
 export type { UpdateVpcNetworkDto } from "./UpdateVpcNetworkDto.js";
+export type { UpdateVpcTierDto } from "./UpdateVpcTierDto.js";

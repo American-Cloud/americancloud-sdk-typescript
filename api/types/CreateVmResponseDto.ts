@@ -7,7 +7,7 @@ export interface CreateVmResponseDto {
     id: string;
     /** Human-readable name for the VM. Shown in dashboards and CLI output. */
     name: string;
-    /** Current lifecycle state of the VM. */
+    /** Current lifecycle state of the VM. Observed values include CREATING, STARTING, CREATED, STARTED, STOPPING, STOPPED, and DESTROYED. Treat this as an open set — new states may be introduced over time. */
     status: string;
     /** Region the VM is provisioned in. References a region label from /v1/compute/regions. */
     region: string;
@@ -29,12 +29,12 @@ export interface CreateVmResponseDto {
     imageDisplayName?: string | undefined;
     /** Primary IP address assigned to the VM on its network. */
     ipAddress: string;
-    /** Name of the network or VPC tier this VM is attached to. */
-    networkName: string;
-    /** Identifier of the network or VPC tier this VM is attached to. */
-    networkId: string;
-    /** Identifier of the VM root volume. */
-    rootVolumeId: string;
+    /** Name of the network or VPC tier this VM is attached to. Null while the VM is still provisioning. */
+    networkName: string | null;
+    /** Identifier of the network or VPC tier this VM is attached to. Null while the VM is still provisioning. */
+    networkId: string | null;
+    /** Identifier of the VM root volume. Null while the VM is still provisioning. */
+    rootVolumeId: string | null;
     /** When the VM was first provisioned. */
     createdAt: string;
     /** When the current billing version started (set when the VM is scaled or its disk is resized). Only present if the VM has been modified since creation. */

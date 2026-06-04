@@ -135,7 +135,7 @@ export class ObjectStorageClient {
     }
 
     /**
-     * Creates a new object storage unit (RGW user) for the authenticated account. To preview pricing without creating anything, use POST /object-storage/units/cost-estimate.
+     * Creates a new object storage unit for the authenticated account and returns it. The returned storageUnitId identifies the unit in all other object storage requests. To preview pricing without creating anything, use POST /object-storage/units/cost-estimate.
      *
      * @param {AmericancloudApi.CreateStorageUnitRequestDto} request
      * @param {ObjectStorageClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -155,14 +155,14 @@ export class ObjectStorageClient {
     public createUnitObjectStorage(
         request: AmericancloudApi.CreateStorageUnitRequestDto,
         requestOptions?: ObjectStorageClient.RequestOptions,
-    ): core.HttpResponsePromise<AmericancloudApi.ObjectStorageSuccessResponseDto> {
+    ): core.HttpResponsePromise<AmericancloudApi.ObjectStorageUnitDto> {
         return core.HttpResponsePromise.fromPromise(this.__createUnitObjectStorage(request, requestOptions));
     }
 
     private async __createUnitObjectStorage(
         request: AmericancloudApi.CreateStorageUnitRequestDto,
         requestOptions?: ObjectStorageClient.RequestOptions,
-    ): Promise<core.WithRawResponse<AmericancloudApi.ObjectStorageSuccessResponseDto>> {
+    ): Promise<core.WithRawResponse<AmericancloudApi.ObjectStorageUnitDto>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -193,7 +193,7 @@ export class ObjectStorageClient {
         });
         if (_response.ok) {
             return {
-                data: _response.body as AmericancloudApi.ObjectStorageSuccessResponseDto,
+                data: _response.body as AmericancloudApi.ObjectStorageUnitDto,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -774,7 +774,7 @@ export class ObjectStorageClient {
     }
 
     /**
-     * Deletes an object storage unit (RGW user)
+     * Deletes an object storage unit
      *
      * @param {AmericancloudApi.DeleteUnitObjectStorageRequest} request
      * @param {ObjectStorageClient.RequestOptions} requestOptions - Request-specific configuration.

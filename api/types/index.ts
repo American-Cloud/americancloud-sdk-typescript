@@ -92,6 +92,7 @@ export * from "./VolumeOperationResponseDto.js";
 export * from "./VolumeResponseDto.js";
 export * from "./VpcNetworkConfigDto.js";
 export * from "./VpcNetworkResponseDto.js";
+export * from "./VpcTierDetailResponseDto.js";
 export * from "./VpcTierResponseDto.js";
 export * from "./WebsiteInfoDto.js";
 export * from "./WebsitesDto.js";

@@ -149,7 +149,6 @@ export class VmsClient {
      *             rootDiskGb: 50
      *         },
      *         image: "ubuntu-22.04",
-     *         network: "network-uuid",
      *         subscriptionPeriod: "hourly"
      *     })
      */
@@ -666,7 +665,6 @@ export class VmsClient {
      *             rootDiskGb: 50
      *         },
      *         image: "ubuntu-22.04",
-     *         network: "network-uuid",
      *         subscriptionPeriod: "hourly"
      *     })
      */
@@ -878,7 +876,7 @@ export class VmsClient {
     /**
      * Scale a virtual machine to new CPU and/or memory specifications. When the VM is stopped, both scale-up and scale-down are allowed. When running, only scale-up is permitted.
      *
-     * @param {AmericancloudApi.ScaleVmsRequest} request
+     * @param {AmericancloudApi.ScaleVmDto} request
      * @param {VmsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link AmericancloudApi.BadRequestError}
@@ -889,27 +887,21 @@ export class VmsClient {
      *
      * @example
      *     await client.vms.scaleVms({
-     *         id: "123e4567-e89b-12d3-a456-426614174000",
-     *         cpu: 4,
-     *         memoryMb: 4096
+     *         id: "123e4567-e89b-12d3-a456-426614174000"
      *     })
      */
     public scaleVms(
-        request: AmericancloudApi.ScaleVmsRequest,
+        request: AmericancloudApi.ScaleVmDto,
         requestOptions?: VmsClient.RequestOptions,
     ): core.HttpResponsePromise<void> {
         return core.HttpResponsePromise.fromPromise(this.__scaleVms(request, requestOptions));
     }
 
     private async __scaleVms(
-        request: AmericancloudApi.ScaleVmsRequest,
+        request: AmericancloudApi.ScaleVmDto,
         requestOptions?: VmsClient.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
-        const { id, cpu, memoryMb } = request;
-        const _queryParams: Record<string, unknown> = {
-            cpu,
-            memoryMb,
-        };
+        const { id, ..._body } = request;
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -928,11 +920,10 @@ export class VmsClient {
             ),
             method: "PUT",
             headers: _headers,
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: _body,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

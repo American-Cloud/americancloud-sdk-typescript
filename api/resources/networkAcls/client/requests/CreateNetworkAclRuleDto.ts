@@ -24,9 +24,9 @@ export interface CreateNetworkAclRuleDto {
     /** Rule number (1-1000). Unique within the ACL list and determines evaluation order. */
     number?: string;
     /** Start of the port range. Used for `TCP` and `UDP` protocols. */
-    startPort?: string;
+    startPort?: number;
     /** End of the port range. Used for `TCP` and `UDP` protocols. */
-    endPort?: string;
+    endPort?: number;
     /** ICMP message type. Used for the `ICMP` protocol. */
     icmpType?: string;
     /** ICMP message code. Used for the `ICMP` protocol. */

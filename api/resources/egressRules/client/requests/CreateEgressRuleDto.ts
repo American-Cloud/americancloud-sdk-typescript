@@ -10,9 +10,9 @@ export interface CreateEgressRuleDto {
     /** Protocol the rule applies to. One of `TCP`, `UDP`, `ICMP`, or `ALL`. */
     protocol: string;
     /** Start of the port range the rule applies to. */
-    startPort?: string;
+    startPort?: number;
     /** End of the port range the rule applies to. */
-    endPort?: string;
+    endPort?: number;
     /** Source CIDR within the guest network CIDR. Omit to allow the entire network. */
     sourceCidrList?: string;
     /** Destination CIDR the traffic is allowed to reach. Defaults to `0.0.0.0/0`. */

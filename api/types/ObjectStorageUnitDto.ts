@@ -5,10 +5,10 @@ export interface ObjectStorageUnitDto {
     storageUnitId: string;
     /** When the storage unit was created. */
     createdAt: string;
-    /** Maximum number of buckets the storage unit may hold, or "unlimited". */
-    maxBuckets?: number | undefined;
+    /** Maximum number of buckets the storage unit may hold. Null means no limit (unlimited). */
+    maxBuckets?: (number | null) | undefined;
     /** Current usage of the storage unit, in kilobytes. */
     sizeKb?: number | undefined;
-    /** Total storage allowed on the storage unit, in kilobytes, or "unlimited". */
-    limitKb?: number | undefined;
+    /** Total storage allowed on the storage unit, in kilobytes. Null means no limit (unlimited). */
+    limitKb?: (number | null) | undefined;
 }

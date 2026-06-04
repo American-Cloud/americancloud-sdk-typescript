@@ -19,14 +19,6 @@ export interface DetailedIsolatedNetworkResponseDto {
     createdAt?: string | undefined;
     /** Network type */
     type: string;
-    /** VPC ID */
-    vpcId: string | null;
-    /** VPC name */
-    vpcName: string | null;
-    /** ID of the ACL list applied to this network */
-    aclId?: string | undefined;
-    /** Name of the ACL list applied to this network */
-    aclName?: string | undefined;
     /** Type of the ACL list */
     aclType?: string | undefined;
     /** IP addresses associated with this network */

@@ -13,8 +13,8 @@ export interface CreateVmDto {
     vmSpecs: AmericancloudApi.VmSpecsDto;
     /** Image label to use for the VM */
     image: string;
-    /** UUID of pre-existing customer network */
-    network: string;
+    /** UUID of a pre-existing network to attach the VM to. Omit to have an isolated network auto-created for the VM (post-create access is then configured via `networkAccess`). */
+    network?: string | undefined;
     /** Subscription period */
     subscriptionPeriod: CreateVmDto.SubscriptionPeriod;
     /** List of tags to add to the VM */

@@ -14,9 +14,9 @@ export interface CreateFirewallRuleDto {
     /** Protocol the rule applies to. */
     protocol: CreateFirewallRuleDto.Protocol;
     /** Start of the port range (1-65535). Required for TCP and UDP. */
-    startPort?: string;
+    startPort?: number;
     /** End of the port range (1-65535). Must be greater than or equal to `startPort`. */
-    endPort?: string;
+    endPort?: number;
     /** Source CIDR allowed to reach the rule target. */
     sourceCidrList: string;
     /** Direction of traffic this rule applies to. */
