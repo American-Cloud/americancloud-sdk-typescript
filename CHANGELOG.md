@@ -8,6 +8,17 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-06-05
+
+### Added
+
+- Typed `GatewayTimeoutError` (504): isolated-network and snapshot deletes now
+  document their transient responses — `409` (the resource still has
+  attachments releasing, e.g. a network's NICs or a snapshot's volume mid-
+  modification) and `504` (deletion still in progress) — and both surface as
+  typed errors. Both are retryable: retry the delete until it succeeds or the
+  resource is gone (404).
+
 ## [1.3.0] - 2026-06-04
 
 ### Added
@@ -63,6 +74,7 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
   networks, ACLs, firewall, port-forwarding, load-balancer and egress rules),
   public IPs, DNS, managed databases, Kubernetes, object storage, and WordPress.
 
-[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.3.1...HEAD
+[1.3.1]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.3.1
 [1.3.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.3.0
 [1.2.2]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.2.2

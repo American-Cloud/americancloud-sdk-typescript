@@ -447,7 +447,9 @@ export class IsolatedNetworksClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
+     * @throws {@link AmericancloudApi.GatewayTimeoutError}
      *
      * @example
      *     await client.isolatedNetworks.deleteIsolatedNetworks({
@@ -517,8 +519,18 @@ export class IsolatedNetworksClient {
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new AmericancloudApi.InternalServerError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 504:
+                    throw new AmericancloudApi.GatewayTimeoutError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
