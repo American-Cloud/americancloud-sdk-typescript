@@ -356,7 +356,7 @@ export class DatabaseInfrastructureClient {
      *         userClusterId: "123e4567-e89b-12d3-a456-426614174000",
      *         repoName: "primary-backup-repo",
      *         bucket: "my-storage-bucket",
-     *         endpoint: "https://s3.example.com",
+     *         endpoint: "s3.example.com",
      *         accessKeyId: "AKIAIOSFODNN7EXAMPLE",
      *         accessKeySecret: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
      *     })
@@ -469,7 +469,7 @@ export class DatabaseInfrastructureClient {
      *         userClusterId: "123e4567-e89b-12d3-a456-426614174000",
      *         repoName: "primary-backup-repo",
      *         bucket: "my-storage-bucket",
-     *         endpoint: "https://s3.example.com",
+     *         endpoint: "s3.example.com",
      *         accessKeyId: "AKIAIOSFODNN7EXAMPLE",
      *         accessKeySecret: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
      *     })

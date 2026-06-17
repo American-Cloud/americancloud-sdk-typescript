@@ -8,4 +8,5 @@ export type { GetScheduleDatabaseBackupsRequest } from "./GetScheduleDatabaseBac
 export type { ListDatabaseBackupsRequest } from "./ListDatabaseBackupsRequest.js";
 export type { SetActiveBackupRepoRequestDto } from "./SetActiveBackupRepoRequestDto.js";
 export { TriggerBackupRequestDto } from "./TriggerBackupRequestDto.js";
+export type { UpdateBackupConfigRequestDto } from "./UpdateBackupConfigRequestDto.js";
 export type { UpdateScheduleDatabaseBackupsRequest } from "./UpdateScheduleDatabaseBackupsRequest.js";

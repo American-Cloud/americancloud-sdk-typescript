@@ -9,6 +9,6 @@
 export interface ResetPasswordDto {
     /** ID of the virtual machine */
     id: string;
-    /** Custom password to set for the VM. If not provided, a random password will be generated. */
+    /** Custom password to set for the VM. If not provided, a random password will be generated. May contain letters, digits, and symbols only (printable ASCII, no spaces). */
     password?: string;
 }

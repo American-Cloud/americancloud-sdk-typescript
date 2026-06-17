@@ -6,7 +6,7 @@
  *         userClusterId: "123e4567-e89b-12d3-a456-426614174000",
  *         repoName: "primary-backup-repo",
  *         bucket: "my-storage-bucket",
- *         endpoint: "https://s3.example.com",
+ *         endpoint: "s3.example.com",
  *         accessKeyId: "AKIAIOSFODNN7EXAMPLE",
  *         accessKeySecret: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
  *     }
@@ -16,9 +16,9 @@ export interface SetupBackupRepoRequestDto {
     userClusterId: string;
     /** Name for the backup repository. */
     repoName: string;
-    /** S3 bucket backups are stored in. */
+    /** Name of the S3 bucket backups are stored in. Provide the bucket name only — no path or account/tenant prefix. */
     bucket: string;
-    /** S3-compatible endpoint URL to use for the bucket. */
+    /** Hostname of your S3-compatible endpoint (for example, "s3.example.com"), optionally with a port. Provide the host only — connections always use HTTPS. */
     endpoint: string;
     /** S3 access key identifier with access to the bucket. */
     accessKeyId: string;

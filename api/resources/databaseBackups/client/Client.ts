@@ -462,6 +462,121 @@ export class DatabaseBackupsClient {
     }
 
     /**
+     * Enable or disable encryption of this cluster’s backups. When enabling, provide a passphrase; keep it safe, as it is required to restore the resulting backups.
+     *
+     * @param {AmericancloudApi.UpdateBackupConfigRequestDto} request
+     * @param {DatabaseBackupsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link AmericancloudApi.BadRequestError}
+     * @throws {@link AmericancloudApi.UnauthorizedError}
+     * @throws {@link AmericancloudApi.ForbiddenError}
+     * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
+     * @throws {@link AmericancloudApi.InternalServerError}
+     *
+     * @example
+     *     await client.databaseBackups.updateConfigDatabaseBackups({
+     *         clusterId: "123e4567-e89b-12d3-a456-426614174000",
+     *         encryptionEnabled: true
+     *     })
+     */
+    public updateConfigDatabaseBackups(
+        request: AmericancloudApi.UpdateBackupConfigRequestDto,
+        requestOptions?: DatabaseBackupsClient.RequestOptions,
+    ): core.HttpResponsePromise<AmericancloudApi.BackupConfigUpdateResponseDto> {
+        return core.HttpResponsePromise.fromPromise(this.__updateConfigDatabaseBackups(request, requestOptions));
+    }
+
+    private async __updateConfigDatabaseBackups(
+        request: AmericancloudApi.UpdateBackupConfigRequestDto,
+        requestOptions?: DatabaseBackupsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<AmericancloudApi.BackupConfigUpdateResponseDto>> {
+        const { clusterId, ..._body } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.AmericancloudApiEnvironment.Production,
+                `api/v1/databases/clusters/${core.url.encodePathParam(clusterId)}/backups/config`,
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as AmericancloudApi.BackupConfigUpdateResponseDto,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new AmericancloudApi.BadRequestError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new AmericancloudApi.UnauthorizedError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new AmericancloudApi.ForbiddenError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new AmericancloudApi.InternalServerError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.AmericancloudApiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PATCH",
+            "/api/v1/databases/clusters/{clusterId}/backups/config",
+        );
+    }
+
+    /**
      * @param {AmericancloudApi.GetScheduleDatabaseBackupsRequest} request
      * @param {DatabaseBackupsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

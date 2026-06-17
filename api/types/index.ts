@@ -2,6 +2,7 @@ export * from "./AccessKeyDto.js";
 export * from "./ApiErrorDto.js";
 export * from "./AssignVmsToLoadBalancerRuleDto.js";
 export * from "./BackupClusterConfigResponseDto.js";
+export * from "./BackupConfigUpdateResponseDto.js";
 export * from "./BackupDeleteResponseDto.js";
 export * from "./BackupDetailsResponseDto.js";
 export * from "./BackupListResponseDto.js";
