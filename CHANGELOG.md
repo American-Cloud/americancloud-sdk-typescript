@@ -8,6 +8,8 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
 
 ## [Unreleased]
 
+## [1.3.2] - 2026-06-17
+
 ## [1.3.1] - 2026-06-05
 
 ### Added
