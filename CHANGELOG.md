@@ -10,6 +10,14 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
 
 ## [1.3.2] - 2026-06-17
 
+### Added
+
+- Database backup encryption: enable or disable encryption of a cluster's
+  backups with a passphrase via `PATCH /databases/clusters/{id}/backups/config`
+  (passphrase 12–256 printable-ASCII characters; AES-256-CFB). Backup
+  configuration and backup-list responses now report encryption status
+  (`enabled`, `algorithm`).
+
 ## [1.3.1] - 2026-06-05
 
 ### Added
