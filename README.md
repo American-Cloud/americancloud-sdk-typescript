@@ -4,6 +4,8 @@ Typed TypeScript / JavaScript client for the [American Cloud](https://americancl
 
 This SDK is auto-generated from the OpenAPI specification using [Fern](https://buildwithfern.com). It targets American Cloud API **`v1`** — see [`VERSIONING.md`](./VERSIONING.md) for how SDK releases track the API.
 
+![Listing regions and VMs with the American Cloud TypeScript SDK](https://raw.githubusercontent.com/American-Cloud/americancloud-sdk-typescript/master/.demo/sdk-firstcall.gif)
+
 ## Installation
 
 ```sh
@@ -31,7 +33,7 @@ Each key is scoped at creation:
 ## Quick start
 
 ```ts
-import { AmericancloudApiClient } from "americancloud-sdk-typescript";
+import { AmericancloudApiClient } from "@americancloud/sdk";
 
 const client = new AmericancloudApiClient({
   apiKey: process.env.AMERICANCLOUD_API_CLIENT_ID!,
@@ -60,6 +62,14 @@ const client = new AmericancloudApiClient({
 
 - **Full reference + code samples**: [americancloud.docs.buildwithfern.com](https://americancloud.docs.buildwithfern.com)
 - **Interactive Swagger UI**: [api.americancloud.com/api-v1](https://api.americancloud.com/api-v1)
+
+## Guides
+
+Narrative walkthroughs on the American Cloud docs site:
+
+- [TypeScript SDK quickstart](https://americancloud.com/docs/sdks/typescript) — install, authenticate, estimate cost, then create a VM, with error handling and pagination
+- [SDKs & Terraform overview](https://americancloud.com/docs/sdks/overview) — when to reach for an SDK, Terraform, or the MCP server
+- [Deploy with AI](https://americancloud.com/docs/deploy-with-ai/overview) — let an AI assistant build and ship to American Cloud
 
 ## Versioning
 
