@@ -23,6 +23,8 @@ export interface CreatePortForwardingRuleDto {
     vmId: string;
     /** When `true`, automatically creates a matching firewall rule alongside the port forwarding rule. */
     openFirewall?: string;
+    /** For a public IP reserved in a VPC, the VPC tier the rule applies to. A VPC IP is not bound to any single tier, so the rule must target one. You only need to set this when the VM has interfaces in more than one tier of the VPC — otherwise the tier is determined automatically from the VM. Ignored for IPs reserved in an isolated network. */
+    tierId?: string;
 }
 
 export namespace CreatePortForwardingRuleDto {

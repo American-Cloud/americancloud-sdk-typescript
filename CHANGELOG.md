@@ -8,6 +8,21 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
 
 ## [Unreleased]
 
+## [1.3.3] - 2026-07-27
+
+### Added
+
+- Port forwarding: optional `tierId` on rule creation — targets a specific VPC
+  tier when the public IP is reserved in a VPC and the VM has interfaces in more
+  than one tier. Otherwise the tier is inferred from the VM; ignored for IPs in
+  an isolated network.
+
+### Changed
+
+- Deleting a VM now also deletes the network that was auto-created for it, once
+  no other VMs remain on it, and releases that network's public IPs. A network
+  you supply is never auto-deleted.
+
 ## [1.3.2] - 2026-06-17
 
 ### Added
@@ -84,7 +99,9 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
   networks, ACLs, firewall, port-forwarding, load-balancer and egress rules),
   public IPs, DNS, managed databases, Kubernetes, object storage, and WordPress.
 
-[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.3.3...HEAD
+[1.3.3]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.3.3
+[1.3.2]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.3.2
 [1.3.1]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.3.1
 [1.3.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.3.0
 [1.2.2]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.2.2
