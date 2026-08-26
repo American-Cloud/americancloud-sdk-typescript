@@ -21,8 +21,8 @@ export interface VmResponseDto {
     rootDiskGb: number;
     /** Tags assigned to this VM for grouping and filtering. */
     tags?: string[] | undefined;
-    /** Billing cadence applied to this VM. */
-    subscriptionPeriod: string;
+    /** Billing cadence applied to this VM. Absent for a few moments after the VM is created, while the billing term is still being recorded. Poll until it appears. */
+    subscriptionPeriod?: string | undefined;
     /** Image label the VM was provisioned from. References /v1/compute/images. */
     image: string;
     /** Friendly name of the source image. */

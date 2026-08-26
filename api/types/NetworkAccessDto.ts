@@ -3,7 +3,7 @@
 import type * as AmericancloudApi from "../index.js";
 
 export interface NetworkAccessDto {
-    /** Allow all outbound traffic from the VM. New isolated networks deny outbound by default. */
+    /** Allow all outbound traffic from the VM, so it can reach the internet. Set to `false` to block all outbound traffic instead. */
     allowEgressAll: boolean;
     /** Inbound ports to open on the network's public IP. Omit or empty for no inbound. When provided, port forwarding and firewall rules are created on the source NAT IP. */
     inboundPorts?: AmericancloudApi.InboundPortDto[] | undefined;

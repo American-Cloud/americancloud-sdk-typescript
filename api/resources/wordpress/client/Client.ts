@@ -236,6 +236,7 @@ export class WordpressClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -301,6 +302,11 @@ export class WordpressClient {
                     );
                 case 404:
                     throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
@@ -438,6 +444,7 @@ export class WordpressClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -513,6 +520,11 @@ export class WordpressClient {
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new AmericancloudApi.InternalServerError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
@@ -539,6 +551,7 @@ export class WordpressClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -604,6 +617,11 @@ export class WordpressClient {
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new AmericancloudApi.InternalServerError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
@@ -630,6 +648,7 @@ export class WordpressClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -695,6 +714,11 @@ export class WordpressClient {
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new AmericancloudApi.InternalServerError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
@@ -721,6 +745,7 @@ export class WordpressClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -786,6 +811,11 @@ export class WordpressClient {
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new AmericancloudApi.InternalServerError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
@@ -817,6 +847,7 @@ export class WordpressClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -882,6 +913,11 @@ export class WordpressClient {
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new AmericancloudApi.InternalServerError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
@@ -908,6 +944,7 @@ export class WordpressClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -973,6 +1010,11 @@ export class WordpressClient {
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new AmericancloudApi.InternalServerError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
@@ -999,6 +1041,7 @@ export class WordpressClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -1064,6 +1107,11 @@ export class WordpressClient {
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new AmericancloudApi.InternalServerError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
@@ -1082,6 +1130,119 @@ export class WordpressClient {
     }
 
     /**
+     * Returns the prorated charge for moving to a different package, without changing anything. The charge covers the remainder of the current billing period and reflects any account discount.
+     *
+     * @param {AmericancloudApi.ChangePackageDto} request
+     * @param {WordpressClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link AmericancloudApi.BadRequestError}
+     * @throws {@link AmericancloudApi.UnauthorizedError}
+     * @throws {@link AmericancloudApi.ForbiddenError}
+     * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
+     * @throws {@link AmericancloudApi.InternalServerError}
+     *
+     * @example
+     *     await client.wordpress.getChangePackageEstimateWordpress({
+     *         packageLabel: "wordpress-25"
+     *     })
+     */
+    public getChangePackageEstimateWordpress(
+        request: AmericancloudApi.ChangePackageDto,
+        requestOptions?: WordpressClient.RequestOptions,
+    ): core.HttpResponsePromise<AmericancloudApi.ChangePackageEstimateDto> {
+        return core.HttpResponsePromise.fromPromise(this.__getChangePackageEstimateWordpress(request, requestOptions));
+    }
+
+    private async __getChangePackageEstimateWordpress(
+        request: AmericancloudApi.ChangePackageDto,
+        requestOptions?: WordpressClient.RequestOptions,
+    ): Promise<core.WithRawResponse<AmericancloudApi.ChangePackageEstimateDto>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.AmericancloudApiEnvironment.Production,
+                "api/v1/wordpress/change-package/cost-estimate",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as AmericancloudApi.ChangePackageEstimateDto,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new AmericancloudApi.BadRequestError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new AmericancloudApi.UnauthorizedError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new AmericancloudApi.ForbiddenError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new AmericancloudApi.InternalServerError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.AmericancloudApiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/api/v1/wordpress/change-package/cost-estimate",
+        );
+    }
+
+    /**
      * Upgrades the WordPress instance to a higher tier package/plan
      *
      * @param {AmericancloudApi.ChangePackageDto} request
@@ -1091,6 +1252,7 @@ export class WordpressClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -1163,6 +1325,11 @@ export class WordpressClient {
                     );
                 case 404:
                     throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
@@ -1298,6 +1465,7 @@ export class WordpressClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -1363,6 +1531,11 @@ export class WordpressClient {
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new AmericancloudApi.InternalServerError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
@@ -1395,6 +1568,7 @@ export class WordpressClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -1471,6 +1645,11 @@ export class WordpressClient {
                     );
                 case 404:
                     throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );

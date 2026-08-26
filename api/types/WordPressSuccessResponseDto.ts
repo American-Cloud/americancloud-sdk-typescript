@@ -5,4 +5,19 @@ export interface WordPressSuccessResponseDto {
     success: boolean;
     /** Human-readable result message. */
     message?: string | undefined;
+    /** Identifier of the WordPress instance that was created. Use it to poll the instance while it is being set up. */
+    id?: string | undefined;
+    /** State of the new instance. Creation is asynchronous, so a successful request returns `provisioning` and the site becomes `active` once it is ready. */
+    status?: WordPressSuccessResponseDto.Status | undefined;
+}
+
+export namespace WordPressSuccessResponseDto {
+    /** State of the new instance. Creation is asynchronous, so a successful request returns `provisioning` and the site becomes `active` once it is ready. */
+    export const Status = {
+        Provisioning: "provisioning",
+        Active: "active",
+        Failed: "failed",
+        Deleting: "deleting",
+    } as const;
+    export type Status = (typeof Status)[keyof typeof Status];
 }

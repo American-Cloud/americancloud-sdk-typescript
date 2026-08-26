@@ -13,10 +13,21 @@ export interface EgressRuleResponseDto {
     networkId: string;
     /** Current lifecycle state of the rule. */
     state: string;
-    /** Source CIDR within the guest network CIDR. */
+    /** `allow` permits the traffic this rule matches; `deny` blocks it. Which one applies is set by the rule's network, not by the rule, and is the opposite of that network's `defaultEgressPolicy`. Omitted when unknown. */
+    action?: EgressRuleResponseDto.Action | undefined;
+    /** Source CIDR within the network's CIDR. */
     sourceCidrList: string;
-    /** Destination CIDR the traffic is allowed to reach. */
+    /** Destination CIDR this rule matches. Whether matching traffic is permitted or blocked depends on `action`. */
     destCidrList?: string | undefined;
     /** When the rule was created. */
     createdAt?: string | undefined;
+}
+
+export namespace EgressRuleResponseDto {
+    /** `allow` permits the traffic this rule matches; `deny` blocks it. Which one applies is set by the rule's network, not by the rule, and is the opposite of that network's `defaultEgressPolicy`. Omitted when unknown. */
+    export const Action = {
+        Allow: "allow",
+        Deny: "deny",
+    } as const;
+    export type Action = (typeof Action)[keyof typeof Action];
 }

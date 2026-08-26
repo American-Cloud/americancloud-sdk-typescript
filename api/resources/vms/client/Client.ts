@@ -548,7 +548,7 @@ export class VmsClient {
     }
 
     /**
-     * Deletes the virtual machine. If its network was auto-created and no other VMs remain on it, that network is also deleted and its public IPs released; networks you created explicitly are left untouched.
+     * Deletes the virtual machine. If its network was auto-created and no other VMs remain on it, that network is also deleted and its public IPs released; networks you created explicitly are left untouched. Delete any snapshots of the root disk before you delete the virtual machine.
      *
      * @param {AmericancloudApi.DeleteVmsRequest} request
      * @param {VmsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -557,6 +557,7 @@ export class VmsClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -624,6 +625,11 @@ export class VmsClient {
                     );
                 case 404:
                     throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );

@@ -341,7 +341,7 @@ export class BlockStorageClient {
     }
 
     /**
-     * Deletes a block storage volume. This operation cannot be undone.
+     * Deletes a block storage volume. This operation cannot be undone. Delete any snapshots of the volume before you delete the volume.
      *
      * @param {AmericancloudApi.DeleteBlockStorageRequest} request
      * @param {BlockStorageClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -350,6 +350,7 @@ export class BlockStorageClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -420,6 +421,11 @@ export class BlockStorageClient {
                     );
                 case 404:
                     throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );

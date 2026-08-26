@@ -19,4 +19,19 @@ export interface WordPressInstanceDto {
     deletedAt?: (string | null) | undefined;
     /** Whether the WordPress instance is fully provisioned and ready to use. */
     ready: boolean;
+    /** State of the instance. `provisioning` while the site is being set up, `active` once it is ready, `failed` if it could not be created. */
+    status: WordPressInstanceDto.Status;
+    /** Why the instance could not be created. Present only when `status` is `failed`. */
+    failureReason?: (string | null) | undefined;
+}
+
+export namespace WordPressInstanceDto {
+    /** State of the instance. `provisioning` while the site is being set up, `active` once it is ready, `failed` if it could not be created. */
+    export const Status = {
+        Provisioning: "provisioning",
+        Active: "active",
+        Failed: "failed",
+        Deleting: "deleting",
+    } as const;
+    export type Status = (typeof Status)[keyof typeof Status];
 }

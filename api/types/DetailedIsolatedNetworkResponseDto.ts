@@ -21,6 +21,8 @@ export interface DetailedIsolatedNetworkResponseDto {
     type: string;
     /** Type of the ACL list */
     aclType?: string | undefined;
+    /** How outbound traffic is treated when this network has no egress rules. `allow` means all outbound traffic is permitted and each egress rule blocks what it matches; `deny` means all outbound traffic is blocked and each egress rule permits what it matches. Fixed when the network is created and cannot be changed afterwards. Omitted when unknown. */
+    defaultEgressPolicy?: DetailedIsolatedNetworkResponseDto.DefaultEgressPolicy | undefined;
     /** IP addresses associated with this network */
     ipAddresses: string[];
 }
@@ -34,4 +36,10 @@ export namespace DetailedIsolatedNetworkResponseDto {
         Inactive: "Inactive",
     } as const;
     export type Status = (typeof Status)[keyof typeof Status];
+    /** How outbound traffic is treated when this network has no egress rules. `allow` means all outbound traffic is permitted and each egress rule blocks what it matches; `deny` means all outbound traffic is blocked and each egress rule permits what it matches. Fixed when the network is created and cannot be changed afterwards. Omitted when unknown. */
+    export const DefaultEgressPolicy = {
+        Allow: "allow",
+        Deny: "deny",
+    } as const;
+    export type DefaultEgressPolicy = (typeof DefaultEgressPolicy)[keyof typeof DefaultEgressPolicy];
 }

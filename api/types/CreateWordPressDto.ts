@@ -4,5 +4,5 @@ export interface CreateWordPressDto {
     /** Package label to use for the WordPress instance */
     packageLabel: string;
     /** Optional custom domain for the WordPress site */
-    domain?: Record<string, unknown> | undefined;
+    domain?: (string | null) | undefined;
 }

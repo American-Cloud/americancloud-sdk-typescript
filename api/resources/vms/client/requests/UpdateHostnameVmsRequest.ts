@@ -10,6 +10,6 @@
 export interface UpdateHostnameVmsRequest {
     /** ID of the virtual machine */
     id: string;
-    /** The new hostname for the virtual machine */
+    /** The new hostname for the virtual machine. It must be 1 to 63 characters, start with a letter, end with a letter or a digit, and hold only letters, digits and hyphens. */
     hostname: string;
 }

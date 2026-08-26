@@ -9,9 +9,9 @@
 export interface UpdateEgressRuleDto {
     /** ID of the egress rule */
     id: string;
-    /** Source CIDR within the guest network CIDR. */
+    /** Source CIDR within the network's CIDR — which senders inside the network the rule matches. */
     sourceCidrList?: string;
-    /** Destination CIDR the traffic is allowed to reach. */
+    /** Destination CIDR the rule matches — where the outbound traffic is headed. */
     destCidrList?: string;
     /** Start of the port range the rule applies to. */
     startPort?: number;

@@ -9,8 +9,12 @@ export interface ApiErrorDto {
     message: ApiErrorDto.Message;
     /** Short HTTP error label. */
     error?: string | undefined;
+    /** Machine-readable reason for the error. Match on this value rather than on `message`, which can be reworded at any time. Present on the errors that have more than one cause for the same status code; omitted otherwise. */
+    code?: string | undefined;
     /** Per-field validation details. Present on 400 responses produced by request-body validation; omitted otherwise. */
     errors?: AmericancloudApi.ValidationErrorItemDto[] | undefined;
+    /** The snapshots that block a delete. Present on a 409 whose `code` is `volume_has_snapshots`; omitted otherwise. */
+    snapshots?: AmericancloudApi.BlockingSnapshotDto[] | undefined;
 }
 
 export namespace ApiErrorDto {
