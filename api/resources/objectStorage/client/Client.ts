@@ -465,7 +465,7 @@ export class ObjectStorageClient {
     }
 
     /**
-     * Returns all access keys (access key and secret key pairs) for the specified storage unit
+     * Returns the oldest access key and secret key pair of the specified storage unit. To see every access key, list the access keys of the storage unit.
      *
      * @param {AmericancloudApi.GetKeysObjectStorageRequest} request
      * @param {ObjectStorageClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -563,6 +563,343 @@ export class ObjectStorageClient {
             _response.rawResponse,
             "GET",
             "/api/v1/object-storage/units/{storageUnitId}/keys",
+        );
+    }
+
+    /**
+     * Returns every access key of the storage unit, oldest first. All of the keys work at the same time, so you can move each client to a new key before you delete the old one.
+     *
+     * @param {AmericancloudApi.ListAccessKeysObjectStorageRequest} request
+     * @param {ObjectStorageClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link AmericancloudApi.BadRequestError}
+     * @throws {@link AmericancloudApi.UnauthorizedError}
+     * @throws {@link AmericancloudApi.ForbiddenError}
+     * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.InternalServerError}
+     *
+     * @example
+     *     await client.objectStorage.listAccessKeysObjectStorage({
+     *         storageUnitId: "tenant$user"
+     *     })
+     */
+    public listAccessKeysObjectStorage(
+        request: AmericancloudApi.ListAccessKeysObjectStorageRequest,
+        requestOptions?: ObjectStorageClient.RequestOptions,
+    ): core.HttpResponsePromise<AmericancloudApi.ListAccessKeysObjectStorageResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__listAccessKeysObjectStorage(request, requestOptions));
+    }
+
+    private async __listAccessKeysObjectStorage(
+        request: AmericancloudApi.ListAccessKeysObjectStorageRequest,
+        requestOptions?: ObjectStorageClient.RequestOptions,
+    ): Promise<core.WithRawResponse<AmericancloudApi.ListAccessKeysObjectStorageResponse>> {
+        const { storageUnitId, page, pageSize } = request;
+        const _queryParams: Record<string, unknown> = {
+            page,
+            pageSize,
+        };
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.AmericancloudApiEnvironment.Production,
+                `api/v1/object-storage/units/${core.url.encodePathParam(storageUnitId)}/access-keys`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as AmericancloudApi.ListAccessKeysObjectStorageResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new AmericancloudApi.BadRequestError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new AmericancloudApi.UnauthorizedError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new AmericancloudApi.ForbiddenError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new AmericancloudApi.InternalServerError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.AmericancloudApiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/api/v1/object-storage/units/{storageUnitId}/access-keys",
+        );
+    }
+
+    /**
+     * Creates a new access key and secret key with the given label for the storage unit, and returns them. The existing keys continue to work. A storage unit can hold up to 10 access keys.
+     *
+     * @param {AmericancloudApi.CreateAccessKeyRequestDto} request
+     * @param {ObjectStorageClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link AmericancloudApi.BadRequestError}
+     * @throws {@link AmericancloudApi.UnauthorizedError}
+     * @throws {@link AmericancloudApi.ForbiddenError}
+     * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
+     * @throws {@link AmericancloudApi.InternalServerError}
+     *
+     * @example
+     *     await client.objectStorage.createAccessKeyObjectStorage({
+     *         storageUnitId: "tenant$user",
+     *         label: "ci-deploy"
+     *     })
+     */
+    public createAccessKeyObjectStorage(
+        request: AmericancloudApi.CreateAccessKeyRequestDto,
+        requestOptions?: ObjectStorageClient.RequestOptions,
+    ): core.HttpResponsePromise<AmericancloudApi.ObjectStorageAccessKeyDto> {
+        return core.HttpResponsePromise.fromPromise(this.__createAccessKeyObjectStorage(request, requestOptions));
+    }
+
+    private async __createAccessKeyObjectStorage(
+        request: AmericancloudApi.CreateAccessKeyRequestDto,
+        requestOptions?: ObjectStorageClient.RequestOptions,
+    ): Promise<core.WithRawResponse<AmericancloudApi.ObjectStorageAccessKeyDto>> {
+        const { storageUnitId, ..._body } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.AmericancloudApiEnvironment.Production,
+                `api/v1/object-storage/units/${core.url.encodePathParam(storageUnitId)}/access-keys`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: _body,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as AmericancloudApi.ObjectStorageAccessKeyDto,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new AmericancloudApi.BadRequestError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new AmericancloudApi.UnauthorizedError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new AmericancloudApi.ForbiddenError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new AmericancloudApi.InternalServerError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.AmericancloudApiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/api/v1/object-storage/units/{storageUnitId}/access-keys",
+        );
+    }
+
+    /**
+     * Deletes the access key. Requests signed with the key fail after this call. The other keys of the storage unit continue to work. A storage unit always keeps at least one access key.
+     *
+     * @param {AmericancloudApi.DeleteAccessKeyObjectStorageRequest} request
+     * @param {ObjectStorageClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link AmericancloudApi.BadRequestError}
+     * @throws {@link AmericancloudApi.UnauthorizedError}
+     * @throws {@link AmericancloudApi.ForbiddenError}
+     * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
+     * @throws {@link AmericancloudApi.InternalServerError}
+     *
+     * @example
+     *     await client.objectStorage.deleteAccessKeyObjectStorage({
+     *         storageUnitId: "tenant$user",
+     *         accessKey: "AKIAIOSFODNN7EXAMPLE"
+     *     })
+     */
+    public deleteAccessKeyObjectStorage(
+        request: AmericancloudApi.DeleteAccessKeyObjectStorageRequest,
+        requestOptions?: ObjectStorageClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteAccessKeyObjectStorage(request, requestOptions));
+    }
+
+    private async __deleteAccessKeyObjectStorage(
+        request: AmericancloudApi.DeleteAccessKeyObjectStorageRequest,
+        requestOptions?: ObjectStorageClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { storageUnitId, accessKey } = request;
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
+            }),
+            requestOptions?.headers,
+        );
+        const _response = await core.fetcher({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)) ??
+                    environments.AmericancloudApiEnvironment.Production,
+                `api/v1/object-storage/units/${core.url.encodePathParam(storageUnitId)}/access-keys/${core.url.encodePathParam(accessKey)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new AmericancloudApi.BadRequestError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 401:
+                    throw new AmericancloudApi.UnauthorizedError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new AmericancloudApi.ForbiddenError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 500:
+                    throw new AmericancloudApi.InternalServerError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.AmericancloudApiError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/api/v1/object-storage/units/{storageUnitId}/access-keys/{accessKey}",
         );
     }
 

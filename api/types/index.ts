@@ -65,6 +65,7 @@ export * from "./NameserversDto.js";
 export * from "./NetworkAccessDto.js";
 export * from "./NetworkAclListResponseDto.js";
 export * from "./NetworkAclRuleResponseDto.js";
+export * from "./ObjectStorageAccessKeyDto.js";
 export * from "./ObjectStorageSuccessResponseDto.js";
 export * from "./ObjectStorageUnitDto.js";
 export * from "./OperationStatusResponseDto.js";

@@ -8,6 +8,32 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-10-05
+
+### Added
+
+- Object storage: manage the S3 access keys of a storage unit. List them with
+  `GET /object-storage/units/{storageUnitId}/access-keys`, add one with a `POST`
+  to the same path, and remove one with
+  `DELETE /object-storage/units/{storageUnitId}/access-keys/{accessKey}`. A unit
+  holds up to 10 keys, every key works at the same time, and a unit always keeps
+  at least one key. A new key needs a `label` of 1 to 64 characters, which
+  cannot be changed later. Each listed key carries its `label` and `createdAt`;
+  both are `null` for the unit's original key.
+- Access key operations document `409` with a `code`:
+  `access_key_limit_reached` when the unit already holds 10 keys,
+  `last_access_key` when you try to delete the only key, and `operation_busy`
+  when another access key request is running. After `operation_busy` nothing
+  has changed, so retry. `operation_in_progress` means the request ran past its
+  deadline and can still change the keys: list the keys before you retry a
+  create, or you can end up with an extra key.
+
+### Changed
+
+- `GET /object-storage/units/{storageUnitId}/keys` returns the unit's oldest key
+  pair, which is its original key. The response shape does not change. To see
+  every key, list the access keys.
+
 ## [1.4.0] - 2026-08-25
 
 ### Added
@@ -177,7 +203,8 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
   networks, ACLs, firewall, port-forwarding, load-balancer and egress rules),
   public IPs, DNS, managed databases, Kubernetes, object storage, and WordPress.
 
-[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.5.0
 [1.4.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.4.0
 [1.3.3]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.3.3
 [1.3.2]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.3.2
