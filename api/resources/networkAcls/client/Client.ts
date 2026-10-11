@@ -876,6 +876,7 @@ export class NetworkAclsClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -946,6 +947,11 @@ export class NetworkAclsClient {
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new AmericancloudApi.InternalServerError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
@@ -978,6 +984,7 @@ export class NetworkAclsClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -1049,6 +1056,11 @@ export class NetworkAclsClient {
                     );
                 case 404:
                     throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );

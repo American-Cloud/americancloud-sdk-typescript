@@ -9,4 +9,6 @@ export interface CostEstimateResponseDto {
     discount_applied?: AmericancloudApi.DiscountAppliedDto | undefined;
     /** Additional billing information or notes about pricing structure */
     billing_note?: string | undefined;
+    /** The usage rate, for a resource that is billed by usage (object storage only). */
+    metered?: AmericancloudApi.MeteredRateDto | undefined;
 }

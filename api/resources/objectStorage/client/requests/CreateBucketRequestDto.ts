@@ -10,6 +10,6 @@
 export interface CreateBucketRequestDto {
     /** Storage unit ID (UID) */
     storageUnitId: string;
-    /** Bucket name. Lowercase letters, numbers, dots, and hyphens only; must start and end with a letter or number. */
+    /** Bucket name. Lowercase letters, numbers, dots, and hyphens only; must start and end with a letter or number. It cannot hold two dots together or a dot next to a hyphen, and it cannot be an IP address. */
     name: string;
 }

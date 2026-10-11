@@ -885,7 +885,7 @@ export class KubernetesClient {
     }
 
     /**
-     * Returns the kubeconfig file content for connecting to the cluster
+     * Returns the kubeconfig file content for connecting to the cluster. The kubeconfig grants full access to the cluster, so this requires Kubernetes manage access (a read-write API key).
      *
      * @param {AmericancloudApi.GetClusterConfigKubernetesRequest} request
      * @param {KubernetesClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -999,6 +999,7 @@ export class KubernetesClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -1072,6 +1073,11 @@ export class KubernetesClient {
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
                 case 500:
                     throw new AmericancloudApi.InternalServerError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
@@ -1104,6 +1110,7 @@ export class KubernetesClient {
      * @throws {@link AmericancloudApi.UnauthorizedError}
      * @throws {@link AmericancloudApi.ForbiddenError}
      * @throws {@link AmericancloudApi.NotFoundError}
+     * @throws {@link AmericancloudApi.ConflictError}
      * @throws {@link AmericancloudApi.InternalServerError}
      *
      * @example
@@ -1175,6 +1182,11 @@ export class KubernetesClient {
                     );
                 case 404:
                     throw new AmericancloudApi.NotFoundError(
+                        _response.error.body as AmericancloudApi.ApiErrorDto,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new AmericancloudApi.ConflictError(
                         _response.error.body as AmericancloudApi.ApiErrorDto,
                         _response.rawResponse,
                     );

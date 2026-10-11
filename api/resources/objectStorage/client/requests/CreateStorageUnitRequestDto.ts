@@ -3,10 +3,10 @@
 /**
  * @example
  *     {
- *         name: "storageunit01"
+ *         name: "prod-assets"
  *     }
  */
 export interface CreateStorageUnitRequestDto {
-    /** Storage unit name. Alphanumeric characters only. */
+    /** Storage unit name. Letters, numbers, hyphens, and underscores, up to 100 characters; must start and end with a letter or number. It cannot be changed later. */
     name: string;
 }

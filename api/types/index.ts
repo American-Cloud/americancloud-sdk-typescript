@@ -60,6 +60,7 @@ export * from "./LoadBalancerRuleInstanceDto.js";
 export * from "./LoadBalancerRuleResponseDto.js";
 export * from "./MarketplaceAppDto.js";
 export * from "./MaxInstancesDto.js";
+export * from "./MeteredRateDto.js";
 export * from "./ModifyBackupScheduleRequestDto.js";
 export * from "./NameserversDto.js";
 export * from "./NetworkAccessDto.js";

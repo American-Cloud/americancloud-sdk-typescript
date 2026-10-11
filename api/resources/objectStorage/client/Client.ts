@@ -149,7 +149,7 @@ export class ObjectStorageClient {
      *
      * @example
      *     await client.objectStorage.createUnitObjectStorage({
-     *         name: "storageunit01"
+     *         name: "prod-assets"
      *     })
      */
     public createUnitObjectStorage(
