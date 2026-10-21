@@ -8,6 +8,67 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-10-20
+
+### Added
+
+- Kubernetes: a cluster can use one package for its control-plane nodes and
+  another for its worker nodes. `kubernetes.createClusterKubernetes` and
+  `kubernetes.getCostEstimateKubernetes` take two new optional fields on
+  `CreateKubernetesClusterRequest`, `controlPackage` and `workerPackage`. Each
+  one overrides `package` for its own node type.
+  - Send `package` alone to use one package for every node, as before.
+  - Send `package` and one override to change one node type.
+  - Send `controlPackage` and `workerPackage` without `package` to set both.
+  A request with all three answers `400`. The estimate prices each node type
+  at its own package. The first control node is free up to the price of one
+  worker; when the control package costs more, the first control node costs
+  the difference.
+- `KubernetesNodePool` has `control` and `worker` (type
+  `KubernetesNodeTypeSpec`: `package`, `cpuCores`, `memoryMb`), one for each
+  node type. `package` is `null` when the package of that node type is not
+  known.
+
+### Changed
+
+- `CreateKubernetesClusterRequest.package` is optional. Code that sets it
+  works unchanged.
+- An expired card on file: a request that creates or changes billable
+  resources (`POST`, `PUT` and `PATCH` on the compute, Kubernetes, block
+  storage, snapshot, object storage, networking, database, WordPress, SSH key
+  and DNS operations) now fails with `AmericancloudApiError`, `statusCode`
+  `402` and `code: payment_method_expired`, and nothing changes. A card counts
+  as expired from the first day of the month after its printed expiry month.
+  `GET` and `DELETE` still work.
+- `databaseBackups.updateConfigDatabaseBackups` with `encryptionEnabled: true`
+  and a new `passphrase` changes the passphrase of a cluster that already
+  encrypts its backups. Earlier backups still restore.
+- The README links to the API reference at
+  [americancloud.com/docs/api](https://americancloud.com/docs/api).
+
+### Deprecated
+
+These fields keep their values and describe the worker nodes only:
+
+- `KubernetesClusterResponse.package`: use `nodePool.worker.package` and
+  `nodePool.control.package`.
+- `KubernetesNodePool.cpuCores` and `memoryMb`: use `nodePool.worker` and
+  `nodePool.control`.
+
+### Fixed
+
+- `kubernetes.listPackagesKubernetes` no longer lists a region where a
+  package is not offered, and leaves out a package that no region offers.
+- `controlNodes` and `workerNodes` on `kubernetes.createClusterKubernetes` and
+  `kubernetes.getCostEstimateKubernetes`, and `workerNodes`, `minWorkers` and
+  `maxWorkers` on `kubernetes.scaleClusterKubernetes`, must be whole numbers
+  of at least 1. Other values answer `400`, not `500`, and an estimate is
+  never negative.
+- `kubernetes.scaleClusterKubernetes` answers `400` when the autoscaling fields
+  do not fit. With `autoscalingEnabled: true`, send `minWorkers` and
+  `maxWorkers`, with `maxWorkers` greater than `minWorkers`, and no
+  `workerNodes`.
+
 ## [1.6.0] - 2026-10-10
 
 ### Added
@@ -251,7 +312,8 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
   networks, ACLs, firewall, port-forwarding, load-balancer and egress rules),
   public IPs, DNS, managed databases, Kubernetes, object storage, and WordPress.
 
-[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.7.0
 [1.6.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.6.0
 [1.5.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.5.0
 [1.4.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.4.0

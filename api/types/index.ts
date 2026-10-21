@@ -55,6 +55,7 @@ export * from "./KubernetesConfigResponseDto.js";
 export * from "./KubernetesNodePool.js";
 export * from "./KubernetesNodeResponse.js";
 export * from "./KubernetesNodeRootVolume.js";
+export * from "./KubernetesNodeTypeSpec.js";
 export * from "./KubernetesPackageResponse.js";
 export * from "./LoadBalancerRuleInstanceDto.js";
 export * from "./LoadBalancerRuleResponseDto.js";

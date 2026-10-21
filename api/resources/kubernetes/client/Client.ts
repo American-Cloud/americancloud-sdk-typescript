@@ -570,7 +570,6 @@ export class KubernetesClient {
      * @example
      *     await client.kubernetes.createClusterKubernetes({
      *         name: "my-cluster",
-     *         "package": "my-package",
      *         region: "us-west-0",
      *         version: "1.28.4",
      *         controlNodes: 1,
@@ -677,7 +676,6 @@ export class KubernetesClient {
      * @example
      *     await client.kubernetes.getCostEstimateKubernetes({
      *         name: "my-cluster",
-     *         "package": "my-package",
      *         region: "us-west-0",
      *         version: "1.28.4",
      *         controlNodes: 1,

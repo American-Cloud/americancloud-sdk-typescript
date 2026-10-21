@@ -9,12 +9,12 @@
 export interface ScaleKubernetesClusterRequest {
     /** ID of the Kubernetes cluster */
     id: string;
-    /** Number of worker nodes */
+    /** Number of worker nodes: a whole number, 1 or more. Do not send it with autoscalingEnabled: true. */
     workerNodes?: number;
     /** Enable or disable autoscaling */
     autoscalingEnabled?: boolean;
-    /** Minimum number of worker nodes when autoscaling is enabled */
+    /** Minimum number of worker nodes when autoscaling is enabled: a whole number, 1 or more. Send it with autoscalingEnabled: true. */
     minWorkers?: number;
-    /** Maximum number of worker nodes when autoscaling is enabled */
+    /** Maximum number of worker nodes when autoscaling is enabled: a whole number, greater than minWorkers. Send it with autoscalingEnabled: true. */
     maxWorkers?: number;
 }

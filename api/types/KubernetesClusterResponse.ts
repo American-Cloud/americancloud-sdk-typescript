@@ -15,7 +15,7 @@ export interface KubernetesClusterResponse {
     kubernetesVersion: string;
     /** When the cluster was created. */
     createdAt: string;
-    /** Package label describing the per-node CPU/memory/disk preset. */
+    /** Package label of the worker nodes (deprecated, use nodePool.control.package and nodePool.worker.package). */
     package: string;
     /** Description of the cluster. */
     description: string;

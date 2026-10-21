@@ -60,7 +60,7 @@ const client = new AmericancloudApiClient({
 
 ## API reference
 
-- **Full reference + code samples**: [americancloud.docs.buildwithfern.com](https://americancloud.docs.buildwithfern.com)
+- **Full reference + code samples**: [americancloud.com/docs/api](https://americancloud.com/docs/api)
 - **Interactive Swagger UI**: [api.americancloud.com/api-v1](https://api.americancloud.com/api-v1)
 
 ## Guides

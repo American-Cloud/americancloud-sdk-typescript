@@ -3,15 +3,19 @@
 export interface CreateKubernetesClusterRequest {
     /** Name of the cluster */
     name: string;
-    /** Package label to use for the cluster */
-    package: string;
+    /** Package label to use for every node in the cluster. Use controlPackage or workerPackage to give one node type a different package. Required unless you send both controlPackage and workerPackage. Leave it out when you send both. */
+    package?: string | undefined;
+    /** Package label for the control-plane nodes. Overrides package. */
+    controlPackage?: string | undefined;
+    /** Package label for the worker nodes. Overrides package. */
+    workerPackage?: string | undefined;
     /** Region where to deploy the cluster */
     region: string;
     /** Kubernetes version to use (semantic version) */
     version: string;
-    /** Number of control plane nodes */
+    /** Number of control plane nodes: a whole number, 1 or more. */
     controlNodes: number;
-    /** Number of worker nodes */
+    /** Number of worker nodes: a whole number, 1 or more. */
     workerNodes: number;
     /** Description of the cluster */
     description?: string | undefined;
