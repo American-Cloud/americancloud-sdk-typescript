@@ -8,6 +8,29 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
 
 ## [Unreleased]
 
+## [1.7.2] - 2026-10-29
+
+Tracks API 1.7.1 and 1.7.2. No type or method changes.
+
+### Changed
+
+- The examples for `kubernetes.createClusterKubernetes` and
+  `kubernetes.getCostEstimateKubernetes` now set a package. One example sends
+  `package` for every node; the other sends `controlPackage` and
+  `workerPackage`. In 1.7.0 the example sent no package, and the API answers
+  that request with `400`.
+- `databaseBackups.createScheduleDatabaseBackups` and
+  `databaseBackups.updateScheduleDatabaseBackups`: the API now checks each
+  schedule entry. `cronExpression` must be five cron fields, for example
+  `0 3 * * *`, or a macro such as `@daily`. `retentionPeriod` must be one or
+  more numbers with a unit of `y`, `mo`, `w`, `d`, `h` or `m`, for example
+  `30d` or `1y6mo`. Another value answers `400`.
+
+### Fixed
+
+- `databaseBackups.triggerDatabaseBackups` accepts a `retentionPeriod` in the
+  same units as a schedule. Before, `1y` and `2w` answered `400`.
+
 ## [1.7.0] - 2026-10-20
 
 ### Added
@@ -312,7 +335,8 @@ These fields keep their values and describe the worker nodes only:
   networks, ACLs, firewall, port-forwarding, load-balancer and egress rules),
   public IPs, DNS, managed databases, Kubernetes, object storage, and WordPress.
 
-[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.7.0...HEAD
+[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.7.2...HEAD
+[1.7.2]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.7.2
 [1.7.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.7.0
 [1.6.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.6.0
 [1.5.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.5.0
