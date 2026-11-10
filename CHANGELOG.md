@@ -8,6 +8,8 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-11-10
+
 Tracks API 1.8.0.
 
 ### Changed
