@@ -41,9 +41,12 @@ jobs:
         # Node 22 bundles npm 10.x; trusted publishing needs npm >= 11.5.1.
         run: npm install -g npm@11
 
+      # --ignore-scripts: no dependency here needs a build. esbuild and fsevents ship prebuilt
+      # binaries as optional dependencies, so the install runs no third-party code. The build
+      # step below runs tsup explicitly.
       - name: Install & build
         run: |
-          npm ci
+          npm ci --ignore-scripts
           npm run build
 
       - name: Publish to npm

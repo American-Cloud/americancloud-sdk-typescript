@@ -12,6 +12,6 @@ export interface GetBackupRepoDatabaseInfrastructureRequest {
     userClusterId: string;
     /** Backup repository name */
     repoName: string;
-    /** Include repository credentials in response (default: false) */
+    /** Include repository credentials in response (default: false). The credentials require the database manage permission. */
     include_credentials?: string;
 }

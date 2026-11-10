@@ -8,6 +8,26 @@ See [`VERSIONING.md`](./VERSIONING.md) for how SDK versions relate to the API ve
 
 ## [Unreleased]
 
+Tracks API 1.8.0.
+
+### Changed
+
+- **Authentication is an API token.** The client takes `token` (or reads
+  `AMERICANCLOUD_API_TOKEN`) and sends `Authorization: Bearer`. The `apiKey`
+  and `apiClientSecret` options are gone, and so are the per-request
+  overrides of the two legacy headers. Create a token at
+  [console.americancloud.com/api-tokens](https://console.americancloud.com/api-tokens).
+  A legacy API key pair still works against the API: stay on 1.7.x, or pass
+  `auth: false` and the two headers in `headers`.
+
+### Added
+
+- `client.whoami.getWhoami()`: the kind of credential, the account, and the
+  permissions the credential has now. For an API token, also its name, last
+  four characters, expiry and last use.
+- Types `WhoamiDto`, `WhoamiAccountDto`, `WhoamiTokenDto`, `WhoamiAppDto`,
+  `AccountUserSummaryDto`.
+
 ## [1.7.2] - 2026-10-29
 
 Tracks API 1.7.1 and 1.7.2. No type or method changes.
@@ -335,7 +355,8 @@ These fields keep their values and describe the worker nodes only:
   networks, ACLs, firewall, port-forwarding, load-balancer and egress rules),
   public IPs, DNS, managed databases, Kubernetes, object storage, and WordPress.
 
-[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.7.2...HEAD
+[Unreleased]: https://github.com/American-Cloud/americancloud-sdk-typescript/compare/v1.8.0...HEAD
+[1.8.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.8.0
 [1.7.2]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.7.2
 [1.7.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.7.0
 [1.6.0]: https://github.com/American-Cloud/americancloud-sdk-typescript/releases/tag/v1.6.0

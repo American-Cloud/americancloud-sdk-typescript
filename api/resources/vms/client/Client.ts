@@ -2,7 +2,7 @@
 
 import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClient.js";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient.js";
-import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
+import { mergeHeaders } from "../../../../core/headers.js";
 import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
@@ -21,7 +21,7 @@ export declare namespace VmsClient {
 export class VmsClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<VmsClient.Options>;
 
-    constructor(options: VmsClient.Options) {
+    constructor(options: VmsClient.Options = {}) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -58,9 +58,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -167,9 +164,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -271,9 +265,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -377,9 +368,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -483,9 +471,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -581,9 +566,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -691,9 +673,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -805,9 +784,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -914,9 +890,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1020,9 +993,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1128,9 +1098,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1237,9 +1204,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1350,9 +1314,6 @@ export class VmsClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({

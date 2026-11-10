@@ -2,7 +2,7 @@
 
 import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClient.js";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient.js";
-import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
+import { mergeHeaders } from "../../../../core/headers.js";
 import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
@@ -21,7 +21,7 @@ export declare namespace DatabasesClient {
 export class DatabasesClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<DatabasesClient.Options>;
 
-    constructor(options: DatabasesClient.Options) {
+    constructor(options: DatabasesClient.Options = {}) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -61,9 +61,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -168,9 +165,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -290,9 +284,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -397,9 +388,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -503,9 +491,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -611,9 +596,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -684,7 +666,7 @@ export class DatabasesClient {
     }
 
     /**
-     * Returns connection details for the database cluster.
+     * Returns connection details for the database cluster. Requires the database manage permission.
      *
      * @param {AmericancloudApi.GetConnectionDatabasesRequest} request
      * @param {DatabasesClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -720,9 +702,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -827,9 +806,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -931,9 +907,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1040,9 +1013,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1152,9 +1122,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1265,9 +1232,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1375,9 +1339,6 @@ export class DatabasesClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({

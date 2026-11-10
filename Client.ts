@@ -25,6 +25,7 @@ import { SshKeysClient } from "./api/resources/sshKeys/client/Client.js";
 import { VmPackagesClient } from "./api/resources/vmPackages/client/Client.js";
 import { VmsClient } from "./api/resources/vms/client/Client.js";
 import { VpcNetworksClient } from "./api/resources/vpcNetworks/client/Client.js";
+import { WhoamiClient } from "./api/resources/whoami/client/Client.js";
 import { WordpressClient } from "./api/resources/wordpress/client/Client.js";
 import type { BaseClientOptions, BaseRequestOptions } from "./BaseClient.js";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "./BaseClient.js";
@@ -63,9 +64,10 @@ export class AmericancloudApiClient {
     protected _sshKeys: SshKeysClient | undefined;
     protected _blockStorage: BlockStorageClient | undefined;
     protected _snapshots: SnapshotsClient | undefined;
+    protected _whoami: WhoamiClient | undefined;
     protected _wordpress: WordpressClient | undefined;
 
-    constructor(options: AmericancloudApiClient.Options) {
+    constructor(options: AmericancloudApiClient.Options = {}) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -167,6 +169,10 @@ export class AmericancloudApiClient {
 
     public get snapshots(): SnapshotsClient {
         return (this._snapshots ??= new SnapshotsClient(this._options));
+    }
+
+    public get whoami(): WhoamiClient {
+        return (this._whoami ??= new WhoamiClient(this._options));
     }
 
     public get wordpress(): WordpressClient {

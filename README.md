@@ -16,19 +16,9 @@ pnpm add @americancloud/sdk
 
 ## Authentication
 
-Every request requires **both** parts of an American Cloud API key, sent as headers:
+Every request carries an American Cloud **API token** in the `Authorization: Bearer` header. Create one at **[console.americancloud.com/api-tokens](https://console.americancloud.com/api-tokens)**. The token is shown once at creation — store it securely. If lost, revoke it and create a new one.
 
-| Header | SDK option |
-|---|---|
-| `X-API-Client-ID` | `apiKey` |
-| `X-API-Client-Secret` | `apiClientSecret` |
-
-Create and manage keys at **[console.americancloud.com/api-keys](https://console.americancloud.com/api-keys)**. The client secret is shown once at creation — store it securely. If lost, revoke the key and create a new one.
-
-Each key is scoped at creation:
-
-- **`read-only`** — `GET` endpoints only
-- **`read-write`** — full access to all resource management endpoints
+Pass the token as `token`, or set `AMERICANCLOUD_API_TOKEN` and omit it. A token has the permissions you chose when you created it: start with the **Read-only** preset, or choose **Full access** to create, change and delete resources. `client.whoami.getWhoami()` returns the permissions the token has now.
 
 ## Quick start
 
@@ -36,8 +26,7 @@ Each key is scoped at creation:
 import { AmericancloudApiClient } from "@americancloud/sdk";
 
 const client = new AmericancloudApiClient({
-  apiKey: process.env.AMERICANCLOUD_API_CLIENT_ID!,
-  apiClientSecret: process.env.AMERICANCLOUD_API_CLIENT_SECRET!,
+  token: process.env.AMERICANCLOUD_API_TOKEN!,
 });
 
 const vms = await client.vms.listVms();
@@ -52,8 +41,7 @@ The SDK targets the American Cloud production API at **`https://api.americanclou
 
 ```ts
 const client = new AmericancloudApiClient({
-  apiKey: "...",
-  apiClientSecret: "...",
+  token: "...",
   baseUrl: "https://your-custom-endpoint.example.com",
 });
 ```

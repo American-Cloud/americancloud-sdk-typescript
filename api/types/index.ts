@@ -1,4 +1,5 @@
 export * from "./AccessKeyDto.js";
+export * from "./AccountUserSummaryDto.js";
 export * from "./ApiErrorDto.js";
 export * from "./AssignVmsToLoadBalancerRuleDto.js";
 export * from "./BackupClusterConfigResponseDto.js";
@@ -103,6 +104,10 @@ export * from "./VpcTierDetailResponseDto.js";
 export * from "./VpcTierResponseDto.js";
 export * from "./WebsiteInfoDto.js";
 export * from "./WebsitesDto.js";
+export * from "./WhoamiAccountDto.js";
+export * from "./WhoamiAppDto.js";
+export * from "./WhoamiDto.js";
+export * from "./WhoamiTokenDto.js";
 export * from "./WordPressInstanceDto.js";
 export * from "./WordPressPackageDto.js";
 export * from "./WordPressPackageMetadataDto.js";

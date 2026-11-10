@@ -69,6 +69,7 @@ export * from "./vms/types/index.js";
 export * from "./vpcNetworks/client/requests/index.js";
 export * as vpcNetworks from "./vpcNetworks/index.js";
 export * from "./vpcNetworks/types/index.js";
+export * as whoami from "./whoami/index.js";
 export * from "./wordpress/client/requests/index.js";
 export * as wordpress from "./wordpress/index.js";
 export * from "./wordpress/types/index.js";

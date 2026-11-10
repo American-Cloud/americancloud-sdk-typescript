@@ -2,7 +2,7 @@
 
 import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClient.js";
 import { type NormalizedClientOptionsWithAuth, normalizeClientOptionsWithAuth } from "../../../../BaseClient.js";
-import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
+import { mergeHeaders } from "../../../../core/headers.js";
 import * as core from "../../../../core/index.js";
 import * as environments from "../../../../environments.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
@@ -21,7 +21,7 @@ export declare namespace ObjectStorageClient {
 export class ObjectStorageClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<ObjectStorageClient.Options>;
 
-    constructor(options: ObjectStorageClient.Options) {
+    constructor(options: ObjectStorageClient.Options = {}) {
         this._options = normalizeClientOptionsWithAuth(options);
     }
 
@@ -63,9 +63,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -167,9 +164,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -279,9 +273,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -389,9 +380,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -465,7 +453,7 @@ export class ObjectStorageClient {
     }
 
     /**
-     * Returns the oldest access key and secret key pair of the specified storage unit. To see every access key, list the access keys of the storage unit.
+     * Returns the oldest access key and secret key pair of the specified storage unit. To see every access key, list the access keys of the storage unit. Requires the object storage manage permission.
      *
      * @param {AmericancloudApi.GetKeysObjectStorageRequest} request
      * @param {ObjectStorageClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -497,9 +485,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -603,9 +588,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -714,9 +696,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -829,9 +808,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -930,9 +906,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1035,9 +1008,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1143,9 +1113,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
@@ -1253,9 +1220,6 @@ export class ObjectStorageClient {
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
             this._options?.headers,
-            mergeOnlyDefinedHeaders({
-                "X-API-Client-Secret": requestOptions?.apiClientSecret ?? this._options?.apiClientSecret,
-            }),
             requestOptions?.headers,
         );
         const _response = await core.fetcher({
